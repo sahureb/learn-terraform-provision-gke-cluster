@@ -12,7 +12,7 @@ variable "gke_password" {
 }
 
 variable "gke_num_nodes" {
-  default     = 2
+  default     = 1
   description = "number of gke nodes"
 }
 
@@ -34,6 +34,8 @@ resource "google_container_cluster" "primary" {
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
+
+   deletion_protection = false
 }
 
 # Separately Managed Node Pool
